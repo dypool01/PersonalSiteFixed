@@ -1,0 +1,90 @@
+﻿
+@{
+	ViewData["Title"] = "Email Confirmation";
+}
+
+
+@model PersonalSiteFixed.Models.ContactViewModel
+
+<!-- ======= Main ======= -->
+<main id="main">
+
+@*    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Email Confirmation</h2>
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>Email Confirmation</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->*@
+    <!-- ======= Confirmation Section ======= -->
+    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="section-title">
+                    <h2>Email Confirmation View</h2>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12">
+
+                    @*
+                    When referring to a SPECIFIC OBJECT passed to this View that fits the model
+                    (like the cvm object we passed to this View), we use a capital M -- "model".
+                    *@
+
+                    <div class="info-box">
+                        <i class="bx bx-check-circle"></i>
+                        <h3>Message Sent!</h3>
+                        <p>
+                            Thank you for contacting me! I will respond
+                            to your message using the provided email address, @Model.Email ,
+                            in the next 1-3 business days.
+                        </p>
+
+                        <br />
+
+                        <div class="offset-3 col-md-6 text-center">
+                            <p>
+                                You sent the following message on
+                                @DateTime.Now.Date.ToShortDateString() at
+                                @DateTime.Now.ToShortTimeString() :
+                            </p>
+                        </div>
+
+                        <br />
+
+                        <div class="offset-3 col-md-6">
+                            <p>
+                                <em>@Model.Message</em>
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Confirmation Section -->
+@*    <!-- ======= Map Section ======= -->
+    <section class="map mt-2">
+        <div class="container-fluid p-0">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3102.274884998462!2d-94.60958528389634!3d38.96339085065514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0e925e366ed0f%3A0x73aec4617abd2f03!2sCentriq%20Training!5e0!3m2!1sen!2sus!4v1630519113795!5m2!1sen!2sus" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section><!-- End Map Section -->*@
+
+</main><!-- End #main -->

@@ -1,0 +1,105 @@
+﻿
+@{
+	ViewData["Title"] = "Portfolio";
+}
+
+  <main id="main">
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Below are differenct projects I've completed.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">Centriq Projects</li>
+              <!-- <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li> -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="~/assets/img/UnsplashPics/Dungeon.jpg" class="img-fluid" alt="Dungeon Application">
+              <div class="portfolio-info">
+                <h4>Dungeon Application</h4>
+                <p>C#</p>
+                <div class="portfolio-links">
+                  <a href="~/assets/img/UnsplashPics/Dungeon.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="C# Dungeon Application"><i class="bx bx-plus"></i></a>
+                  <a href="@Url.Action("DungeonDetails", "Home")" class="portfolio-details-lightbox" data-glightbox="type: external" title="Dungeon Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="~/assets/img/UnsplashPics/mike-petrucci-c9FQyqIECds-unsplash.jpg" class="img-fluid" alt="Storefront">
+              <div class="portfolio-info">
+                <h4>StoreFront</h4>
+                <p>MVC</p>
+                <div class="portfolio-links">
+                  <a href="~/assets/img/UnsplashPics/mike-petrucci-c9FQyqIECds-unsplash.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="MVC StoreFront"><i class="bx bx-plus"></i></a>
+                  <a href="@Url.Action("StoreFrontDetails", "Home")" class="portfolio-details-lightbox" data-glightbox="type: external" title="StoreFront Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img src="~/assets/img/UnsplashPics/React2.jpg" class="img-fluid bg-dark" alt="ReactJS">
+                        <div class="portfolio-info">
+                            <h4>ReactJS ToDo API</h4>
+                            <p>Javascript</p>
+                            <div class="portfolio-links">
+                                <a href="~/assets/img/UnsplashPics/React2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ReactJS ToDo API Project"><i class="bx bx-plus"></i></a>
+                                <a href="@Url.Action("ReactJS", "Home")" class="portfolio-details-lightbox" data-glightbox="type: external" title="React ToDo Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app pt-4">
+                    <div class="portfolio-wrap">
+                        <img src="~/assets/img/UnsplashPics/Hogwarts.jpg" class="img-fluid bg-dark" alt="SAT Project">
+                        <div class="portfolio-info">
+                            <h4>SAT Project</h4>
+                            <p>C#, MVC, Agile/Scrum</p>
+                            <div class="portfolio-links">
+                                <a href="~/assets/img/UnsplashPics/Hogwarts.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="SAT Project"><i class="bx bx-plus"></i></a>
+                                <a href="@Url.Action("Hogwarts", "Home")" class="portfolio-details-lightbox" data-glightbox="type: external" title="SAT Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app pt-4">
+                    <div class="portfolio-wrap">
+                        <img src="~/assets/img/Capstone.PNG" class="img-fluid bg-dark" alt="Capstone Project">
+                        <div class="portfolio-info">
+                            <h4>Capstone Project</h4>
+                            <p>C#, MVC, Agile/Scrum, JS, AJAX</p>
+                            <div class="portfolio-links">
+                                <a href="~/assets/img/Capstone.PNG" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Capstone Project"><i class="bx bx-plus"></i></a>
+                                <a href="@Url.Action("Capstone", "Home")" class="portfolio-details-lightbox" data-glightbox="type: external" title="Capstone Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+  </main><!-- End #main -->
