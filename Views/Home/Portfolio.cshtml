@@ -1,98 +1,69 @@
-﻿@using System.Data;
-@using System.Web;
+﻿@using System.Data
+@using System.Web
 
 @{
-	//This is inline Razor Code storing all of the details about each of my current projects into a DataTable, that I am dynamically building into a full HTML Raw Rendered String.
-	ViewData["Title"] = "Portfolio";
+    ViewData["Title"] = "Portfolio";
 
-	DataTable projectsTable = new DataTable("Projects");
-	//This is where I define the DataTable, and the different types of data that can be in the DataTable.
-	projectsTable.Columns.Add("Name of Project", typeof(string));
-	//I could also store numbers or other variable types in here, but as I am building an HTML String, I am only using strings.
-	projectsTable.Columns.Add("Written Language", typeof(string));
-	projectsTable.Columns.Add("Description", typeof(string));
-	projectsTable.Columns.Add("Image", typeof(string));
-	projectsTable.Columns.Add("PathToPage", typeof(string));
+    DataTable projectsTable = new DataTable("Projects");
+    projectsTable.Columns.Add("Name of Project", typeof(string));
+    projectsTable.Columns.Add("Written Language", typeof(string));
+    projectsTable.Columns.Add("Description", typeof(string));
+    projectsTable.Columns.Add("Image", typeof(string));
+    projectsTable.Columns.Add("Controller", typeof(string));
+    projectsTable.Columns.Add("Action", typeof(string));
 
-	//This is where I am adding all of the data that is being populated into the previously defined Columns of the projectsTable.
-	projectsTable.Rows.Add("Dungeon Project", "C#", "A functioning dungeon crawler application created using C# in Microsoft Visual Studio. Meant to be a parody of the grandfather of mmo's EverQuest. ", "/assets/img/UnsplashPics/Dungeon.jpg", $"<a href='@Url.Action(\"DungeonDetails\", \"Home\")' title='Dungeon Details'>Go to Project</a>");
-	projectsTable.Rows.Add("StoreFront", "MVC", "A storefront application at first made staticly using HTML and later converted to MVC. Includes a functioning contact form, as well as product filters. Sells fantasy themed weapons and armor mostly from the Final Fantasy series. ", "/assets/img/UnsplashPics/mike-petrucci-c9FQyqIECds-unsplash.jpg", $"<a href='@Url.Action(\"StoreFrontDetails\", \"Home\")' title='StoreFront Details'>Go to Project</a>");
-	projectsTable.Rows.Add("ToDo App", "ReactJS", "An application made to display the information from my ToDo API. Allows editing and deleting the different ToDo's. Made using Javascript and HTML. ", "/assets/img/UnsplashPics/React2.jpg", $"<a href='@Url.Action(\"ReactJS\", \"Home\")' title='ReactJS'>Go to Project</a>");
-	projectsTable.Rows.Add("SAT App", "MVC, Agile/Scrum", "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern. ", "/assets/img/UnsplashPics/Hogwarts.jpg", $"<a href='@Url.Action(\"Hogwarts\", \"Home\")' title='Hogwarts'>Go to Project</a>");
-	projectsTable.Rows.Add("Capstone Project", "MVC, Agile/Scrum, AJAX", "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern. Groups were assigned different parts of the project via Trello boards. Worked on locking down controllers, scaffolding views, and implementing AJAX functionality as well as styling on the Events View. ", "/assets/img/Capstone.PNG", $"<a href='@Url.Action(\"Capstone\", \"Home\")' title='Capstone'>Go to Project</a>");
-	//So in the future, I will only need to add to here.
-	//I can just add any project details here for reference.
+    projectsTable.Rows.Add("Dungeon Project", "C#", "A functioning dungeon crawler application created using C# in Microsoft Visual Studio. Meant to be a parody of the grandfather of MMOs EverQuest.", "/assets/img/UnsplashPics/Dungeon.jpg", "Home", "DungeonDetails");
+    projectsTable.Rows.Add("StoreFront", "MVC", "A storefront application initially made statically using HTML and later converted to MVC. Includes a functioning contact form, as well as product filters. Sells fantasy-themed weapons and armor mostly from the Final Fantasy series.", "/assets/img/UnsplashPics/mike-petrucci-c9FQyqIECds-unsplash.jpg", "Home", "StoreFrontDetails");
+    projectsTable.Rows.Add("ToDo App", "ReactJS", "An application made to display the information from my ToDo API. Allows editing and deleting the different ToDos. Made using JavaScript and HTML.", "/assets/img/UnsplashPics/React2.jpg", "Home", "ReactJS");
+    projectsTable.Rows.Add("SAT App", "MVC, Agile/Scrum", "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern.", "/assets/img/UnsplashPics/Hogwarts.jpg", "Home", "Hogwarts");
+    projectsTable.Rows.Add("Capstone Project", "MVC, Agile/Scrum, AJAX", "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern. Groups were assigned different parts of the project via Trello boards. Worked on locking down controllers, scaffolding views, and implementing AJAX functionality as well as styling on the Events View.", "/assets/img/Capstone.PNG", "Home", "Capstone");
 
-	//IF I WOULD LIKE TO ADD ANY NEW INFO, LIKE FOR EXAMPLE A GITHUB LINK, I would need to also add a new Column at the top and then refer to it in the below loop by using [5].
+    string concatStr = "";
 
-	int gayLooper = 0;
-	string concatStr = "";
-	//ViewData["accordionHTML"] = "";
-	//Keeping this here in case it might be useful?
+    for (int i = 0; i < projectsTable.Rows.Count; i++)
+    {
+        DataRow currentDataRow = projectsTable.Rows[i];
+        string nameOfProject = currentDataRow[0].ToString();
+        string writtenLanguage = currentDataRow[1].ToString();
+        string description = currentDataRow[2].ToString();
+        string image = currentDataRow[3].ToString();
+        string controller = currentDataRow[4].ToString();
+        string action = currentDataRow[5].ToString();
+        string currentIteration = i.ToString();
 
-	for (gayLooper = 0; gayLooper < projectsTable.Rows.Count; gayLooper++)
-	//This utilizes i=0 loop, so that way I can dynamically call the projectsTable of the current amount.
-
-	{
-		DataRow CurrentDataRow = projectsTable.Rows[gayLooper];
-		//While this is slightly redunant, as I could add CurrentDataRow[0] instead of redefining them pointlessly here.
-		//I have kept the Name redefinitions for easier readability and maintenance.
-		string nameOfProject = CurrentDataRow[0].ToString();
-		string writtenLanguage = CurrentDataRow[1].ToString();
-		string description = CurrentDataRow[2].ToString();
-		string image = CurrentDataRow[3].ToString();
-		string pathToPage = CurrentDataRow[4].ToString();
-		string currentIteration = gayLooper.ToString();
-		concatStr += $@"
+        concatStr += $@"
 <div class='accordion-item'>
-    <h2 class='accordion-header' id='flush-heading" + currentIteration + $@"'>
-      <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse" + currentIteration + $@"' aria-expanded='false' aria-controls='flush-collapse" + currentIteration + $@"'>
-      <strong>"+ nameOfProject + "&nbsp" + $@" </strong>-<code> " + "&nbsp" + writtenLanguage
-		+
-		$@"</code>
-      </button>
+    <h2 class='accordion-header' id='flush-heading{currentIteration}'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse{currentIteration}' aria-expanded='false' aria-controls='flush-collapse{currentIteration}'>
+            <strong>{nameOfProject} &nbsp;</strong>-<code>&nbsp; {writtenLanguage}</code>
+        </button>
     </h2>
-    <div id='flush-collapse" + currentIteration + $@"' class='accordion-collapse collapse' aria-labelledby='flush-heading" + currentIteration + $@"' data-bs-parent='#accordionFlushExample'>
+    <div id='flush-collapse{currentIteration}' class='accordion-collapse collapse' aria-labelledby='flush-heading{currentIteration}' data-bs-parent='#accordionFlushExample'>
       <div class='accordion-body'>
-      <div class='card'>
-  <div class='row g-0'>
-    <div class='col-md-4'>
-      <img src='" + image + $@"' class='img-fluid rounded-start border border-primary card-img-top'>
+    <div class='card'>
+        <div class='row g-0'>
+            <div class='col-md-4'>
+                <img src='{image}' class='img-fluid rounded-start border border-primary card-img-top'>
+            </div>
+            <div class='col-md-8'>
+                <div class='card-body'>
+                    <p class='card-text'><strong>Project Description: </strong>{description}</p>
+                    <p class='card-text'><strong>View this Project: </strong><a href='{Url.Action(action, controller)}' title='{nameOfProject}'>View Details</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class='col-md-8'>
-      <div class='card-body'>
-        <p class='card-text'><strong>Project Description: </strong>" + description
-		+
-		$@"</p><p class='card-text'> <strong>View this Project: </strong> " + pathToPage + $@"</p>
-      </div>
-    </div>
-  </div>
 </div>
-    </div>
-  </div>";
-		//ViewData["accordionHTML"] += concatStr;
-		//Commenting this out as ViewData is not needed, but in case I switch back to using it- keeping it here.
-	}
+</div>
+</div>";
+    }
+
 }
 
-<main id="main">
-
-	<!-- ======= Portfolio Section ======= -->
-
-
-
-	<section id="portfolio" class="portfolio" style="margin: 0 auto">
-		<div class="accordion accordion-flush col-md-6" id="accordionFlushExample" style="margin: 0 auto">
-
-			@Html.Raw(concatStr)
-
-			<!-- Continue to add more items -->
-
-		</div>
-
-
-
-
-	</section><!-- End Portfolio Section -->
-
-</main><!-- End #main -->
+<main id='main'>
+    <section id='portfolio' class='portfolio' style='margin: 0 auto'>
+        <div class='accordion accordion-flush col-md-6' id='accordionFlushExample' style='margin: 0 auto'>
+            @Html.Raw(concatStr)
+        </div>
+    </section>
+</main>
