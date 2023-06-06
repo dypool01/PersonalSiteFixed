@@ -49,6 +49,15 @@
                 PathToPage = Url.Action("Capstone", "Home")
             });
 
+    projects.Add(new ProjectModel
+            {
+                Name = "Personal Site (React)",
+                WrittenLanguage = "Javascript, React",
+                Description = "Alternate version of personal site, created using ReactJs as to re-familiarize myself with the concepts.",
+                Image = "/assets/img/UnsplashPics/React-PersonalSite.jpg",
+                PathToPage = Url.Action("PersonalSiteReact", "Home")
+            });
+
     string concatStr = "";
 
     for (int i = 0; i < projects.Count; i++)
