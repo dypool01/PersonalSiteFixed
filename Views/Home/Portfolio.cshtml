@@ -1,69 +1,95 @@
-﻿@using System.Data
-@using System.Web
-
+﻿
 @{
     ViewData["Title"] = "Portfolio";
 
-    DataTable projectsTable = new DataTable("Projects");
-    projectsTable.Columns.Add("Name of Project", typeof(string));
-    projectsTable.Columns.Add("Written Language", typeof(string));
-    projectsTable.Columns.Add("Description", typeof(string));
-    projectsTable.Columns.Add("Image", typeof(string));
-    projectsTable.Columns.Add("Controller", typeof(string));
-    projectsTable.Columns.Add("Action", typeof(string));
+    List<ProjectModel> projects = new List<ProjectModel>();
 
-    projectsTable.Rows.Add("Dungeon Project", "C#", "A functioning dungeon crawler application created using C# in Microsoft Visual Studio. Meant to be a parody of the grandfather of MMOs EverQuest.", "/assets/img/UnsplashPics/Dungeon.jpg", "Home", "DungeonDetails");
-    projectsTable.Rows.Add("StoreFront", "MVC", "A storefront application initially made statically using HTML and later converted to MVC. Includes a functioning contact form, as well as product filters. Sells fantasy-themed weapons and armor mostly from the Final Fantasy series.", "/assets/img/UnsplashPics/mike-petrucci-c9FQyqIECds-unsplash.jpg", "Home", "StoreFrontDetails");
-    projectsTable.Rows.Add("ToDo App", "ReactJS", "An application made to display the information from my ToDo API. Allows editing and deleting the different ToDos. Made using JavaScript and HTML.", "/assets/img/UnsplashPics/React2.jpg", "Home", "ReactJS");
-    projectsTable.Rows.Add("SAT App", "MVC, Agile/Scrum", "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern.", "/assets/img/UnsplashPics/Hogwarts.jpg", "Home", "Hogwarts");
-    projectsTable.Rows.Add("Capstone Project", "MVC, Agile/Scrum, AJAX", "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern. Groups were assigned different parts of the project via Trello boards. Worked on locking down controllers, scaffolding views, and implementing AJAX functionality as well as styling on the Events View.", "/assets/img/Capstone.PNG", "Home", "Capstone");
+    projects.Add(new ProjectModel
+            {
+                Name = "Dungeon Project",
+                WrittenLanguage = "C#",
+                Description = "A functioning dungeon crawler application created using C# in Microsoft Visual Studio. Meant to be a parody of the grandfather of MMOs EverQuest.",
+                Image = "/assets/img/UnsplashPics/Dungeon.jpg",
+                PathToPage = Url.Action("DungeonDetails", "Home")
+            });
+
+    projects.Add(new ProjectModel
+            {
+                Name = "StoreFront",
+                WrittenLanguage = "MVC",
+                Description = "A storefront application initially made statically using HTML and later converted to MVC. Includes a functioning contact form, as well as product filters. Sells fantasy-themed weapons and armor mostly from the Final Fantasy series.",
+                Image = "/assets/img/UnsplashPics/mike-petrucci-c9FQyqIECds-unsplash.jpg",
+                PathToPage = Url.Action("StoreFrontDetails", "Home")
+            });
+
+    projects.Add(new ProjectModel
+            {
+                Name = "ToDo App",
+                WrittenLanguage = "ReactJS",
+                Description = "An application made to display the information from my ToDo API. Allows editing and deleting the different ToDos. Made using JavaScript and HTML.",
+                Image = "/assets/img/UnsplashPics/React2.jpg",
+                PathToPage = Url.Action("ReactJS", "Home")
+            });
+
+    projects.Add(new ProjectModel
+            {
+                Name = "SAT App",
+                WrittenLanguage = "MVC, Agile/Scrum",
+                Description = "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern.",
+                Image = "/assets/img/UnsplashPics/Hogwarts.jpg",
+                PathToPage = Url.Action("Hogwarts", "Home")
+            });
+
+    projects.Add(new ProjectModel
+            {
+                Name = "Capstone Project",
+                WrittenLanguage = "MVC, Agile/Scrum, AJAX",
+                Description = "An application made in a group of two using Agile Scrum methodology, a relational database, as well as MVC (Model, View, Controller) architectural pattern. Groups were assigned different parts of the project via Trello boards. Worked on locking down controllers, scaffolding views, and implementing AJAX functionality as well as styling on the Events View.",
+                Image = "/assets/img/Capstone.PNG",
+                PathToPage = Url.Action("Capstone", "Home")
+            });
 
     string concatStr = "";
 
-    for (int i = 0; i < projectsTable.Rows.Count; i++)
+    for (int i = 0; i < projects.Count; i++)
     {
-        DataRow currentDataRow = projectsTable.Rows[i];
-        string nameOfProject = currentDataRow[0].ToString();
-        string writtenLanguage = currentDataRow[1].ToString();
-        string description = currentDataRow[2].ToString();
-        string image = currentDataRow[3].ToString();
-        string controller = currentDataRow[4].ToString();
-        string action = currentDataRow[5].ToString();
+        var project = projects[i];
         string currentIteration = i.ToString();
 
         concatStr += $@"
-<div class='accordion-item'>
-    <h2 class='accordion-header' id='flush-heading{currentIteration}'>
-        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse{currentIteration}' aria-expanded='false' aria-controls='flush-collapse{currentIteration}'>
-            <strong>{nameOfProject} &nbsp;</strong>-<code>&nbsp; {writtenLanguage}</code>
-        </button>
-    </h2>
-    <div id='flush-collapse{currentIteration}' class='accordion-collapse collapse' aria-labelledby='flush-heading{currentIteration}' data-bs-parent='#accordionFlushExample'>
-      <div class='accordion-body'>
-    <div class='card'>
-        <div class='row g-0'>
-            <div class='col-md-4'>
-                <img src='{image}' class='img-fluid rounded-start border border-primary card-img-top'>
-            </div>
-            <div class='col-md-8'>
-                <div class='card-body'>
-                    <p class='card-text'><strong>Project Description: </strong>{description}</p>
-                    <p class='card-text'><strong>View this Project: </strong><a href='{Url.Action(action, controller)}' title='{nameOfProject}'>View Details</a></p>
+        <div class='accordion-item'>
+            <h2 class='accordion-header' id='flush-heading{currentIteration}'>
+                <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse{currentIteration}' aria-expanded='false' aria-controls='flush-collapse{currentIteration}'>
+                    <strong>{project.Name} &nbsp;</strong>-<code>&nbsp; {project.WrittenLanguage}</code>
+                </button>
+            </h2>
+            <div id='flush-collapse{currentIteration}' class='accordion-collapse collapse' aria-labelledby='flush-heading{currentIteration}' data-bs-parent='#accordionFlushExample'>
+                <div class='accordion-body'>
+                    <div class='card'>
+                        <div class='row g-0'>
+                            <div class='col-md-4'>
+                                <img src='{project.Image}' class='img-fluid rounded-start border border-primary card-img-top'>
+                            </div>
+                            <div class='col-md-8'>
+                                <div class='card-body'>
+                                    <p class='card-text'><strong>Project Description: </strong>{project.Description}</p>
+                                    <p class='card-text'><strong>View this Project: </strong><a href='{project.PathToPage}' title='{project.Name}'>Go to Project</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>";
+        </div>";
     }
-
 }
 
-<main id='main'>
-    <section id='portfolio' class='portfolio' style='margin: 0 auto'>
+<main id="main">
+    <section id="portfolio" class="portfolio" style="margin: 0 auto">
         <div class='accordion accordion-flush col-md-6' id='accordionFlushExample' style='margin: 0 auto'>
             @Html.Raw(concatStr)
         </div>
     </section>
 </main>
+
+}
