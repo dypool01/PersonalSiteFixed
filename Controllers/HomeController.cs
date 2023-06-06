@@ -66,6 +66,11 @@ namespace PersonalSiteFixed.Controllers
             return View();
         }
 
+        public IActionResult PersonalSiteReact()
+        {
+            return View();
+        }
+
         //Add a field for the Configuration settings in appsettings.json
         private readonly IConfiguration _config;
 

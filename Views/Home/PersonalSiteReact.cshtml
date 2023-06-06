@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewData["Title"] = "Dungeon Details";
+﻿@{
+    ViewData["Title"] = "Personal Site (React) Details";
     Layout = null;
 }
 
@@ -39,26 +38,25 @@
     ======================================================== -->
 </head>
 
-
-
+<body>
 
     <main id="main">
 
         <!-- ======= Portfolio Details Section ======= -->
-        <section id="dungeon-details" class="dungeon-details">
+        <section id="storefront-details" class="storefront-details">
 
-            <!-- Dungeon Application -->
+            <!-- StoreFront Card -->
 
             <div class="container">
 
                 <div class="row gy-4">
 
                     <div class="col-lg-8">
-                        <div class="dungeon-details-slider swiper">
+                        <div class="storefront-details-slider swiper">
                             <div class="swiper-wrapper align-items-center">
 
                                 <div class="swiper-slide">
-                                    <img src="~/assets/img/UnsplashPics/Dungeon.jpg" alt="">
+                                    <img src="~/assets/img/UnsplashPics/React-PersonalSite.jpg" alt="@ViewData["title"]">
                                 </div>
 
                             </div>
@@ -67,17 +65,18 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <div class="dungeon-info">
+                        <div class="storefront-info">
                             <h3>Project information</h3>
                             <ul>
-                                <li><strong>Category</strong>: Centriq Project: C#</li>
-                                <li><strong>Project URL</strong>: <a href="https://github.com/dypool01/Dungeon-Application.git" target="_blank" class="bi-github">GitHub</a></li>
+                                <li><strong>Category</strong>: Personal Project: ReactJs </li>
+
+                                <li><strong>Project URL</strong>: <a href="https://github.com/dypool01/react-personalsite" target="_blank" class="bi-github">GitHub</a></li>
                             </ul>
                         </div>
-                        <div class="dungeon-description">
+                        <div class="storefront-description">
                             <h2>Application Details</h2>
                             <p>
-                                A functioning dungeon crawler application created using C# in Microsoft Visual Studio. Meant to be a parody of the grandfather of mmo's EverQuest. 
+                                A new version of my personal site created using ReactJs before create-react-app was deprecated.
                             </p>
                         </div>
                     </div>
@@ -85,10 +84,7 @@
                 </div>
 
             </div>
-
-
-        </section><!-- End Dungeon Details Section -->
-
+        </section>
     </main><!-- End #main -->
 
     <div id="preloader"></div>
@@ -107,7 +103,4 @@
     <!-- Template Main JS File -->
     <script src="~/assets/js/main.js"></script>
 
-
-
-
- 
+</body>
