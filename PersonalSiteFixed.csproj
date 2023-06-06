@@ -350,4 +350,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\img\Favicons\" />
+  </ItemGroup>
+
 </Project>
